@@ -13,6 +13,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/hint_title"
+        android:layout_margin="@dimen/margin_standard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,6 +26,7 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:hint="@string/hint_description"
+        android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
@@ -34,6 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:entries="@array/days_of_week"
+        android:layout_margin="@dimen/margin_standard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
@@ -43,6 +46,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="@dimen/margin_standard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerDaysOfWeek">
@@ -79,6 +83,7 @@
         android:layout_height="wrap_content"
         android:text="@string/add_note"
         android:onClick="onClickSaveNote"
+        android:layout_margin="@dimen/margin_standard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupPriority" />

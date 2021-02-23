@@ -9,10 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
 
-    private ArrayList<Note> notes;
+    private List<Note> notes;
     private OnNoteClickListener onNoteClickListener;
 
     public NotesAdapter(ArrayList<Note> notes) {
@@ -40,7 +41,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         Note note = notes.get(position);
         holder.textViewTitle.setText(note.getTitle());
         holder.textViewDescription.setText(note.getDescription());
-        holder.textViewDayOfWeek.setText(Note.getDayAsString(note.getDayOfWeek() + 1));
+        holder.textViewDayOfWeek.setText(getDayAsString(note.getDayOfWeek() + 1));
         int colorId;
         int priority = note.getPriority();
         switch (priority) {
@@ -93,5 +94,26 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
                 }
             });
         }
+    }
+
+    public static String getDayAsString(int position) {
+        switch (position) {
+            case 1: return "Monday";
+            case 2: return "Tuesday";
+            case 3: return "Wednesday";
+            case 4: return "Thursday";
+            case 5: return "Friday";
+            case 6: return "Saturday";
+            default: return "Sunday";
+        }
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+        notifyDataSetChanged();
+    }
+
+    public List<Note> getNotes() {
+        return notes;
     }
 }
