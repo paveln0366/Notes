@@ -1,5 +1,6 @@
 package com.pavelpotapov.notes;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
@@ -26,6 +27,10 @@ public class AddNoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
         dbHelper = new NotesDBHelper(this);
         database = dbHelper.getWritableDatabase();
         editTextTitle = findViewById(R.id.editTextTitle);
@@ -37,7 +42,7 @@ public class AddNoteActivity extends AppCompatActivity {
     public void onClickSaveNote(View view) {
         String title = editTextTitle.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
-        String dayOfWeek = spinnerDaysOfWeek.getSelectedItem().toString();
+        int dayOfWeek = spinnerDaysOfWeek.getSelectedItemPosition();
         int radioButtonId = radioGroupPriority.getCheckedRadioButtonId();
         RadioButton radioButton = findViewById(radioButtonId);
         int priority = Integer.parseInt(radioButton.getText().toString());
@@ -45,7 +50,7 @@ public class AddNoteActivity extends AppCompatActivity {
             ContentValues contentValues = new ContentValues();
             contentValues.put(NotesContract.NotesEntry.COLUMN_TITLE, title);
             contentValues.put(NotesContract.NotesEntry.COLUMN_DESCRIPTION, description);
-            contentValues.put(NotesContract.NotesEntry.COLUMN_DAY_OF_WEEK, dayOfWeek);
+            contentValues.put(NotesContract.NotesEntry.COLUMN_DAY_OF_WEEK, dayOfWeek + 1);
             contentValues.put(NotesContract.NotesEntry.COLUMN_PRIORITY, priority);
             database.insert(NotesContract.NotesEntry.TABLE_NAME, null, contentValues);
             Intent intent = new Intent(this, MainActivity.class);

@@ -1,6 +1,7 @@
 package com.pavelpotapov.notes;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
         recyclerViewNotes = findViewById(R.id.recyclerViewNotes);
         dbHelper = new NotesDBHelper(this);
         database = dbHelper.getWritableDatabase();
@@ -76,12 +81,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void getData() {
         notes.clear();
-        Cursor cursor = database.query(NotesContract.NotesEntry.TABLE_NAME, null, null, null, null, null, null);
+        // Select priority notes
+        String selection = NotesContract.NotesEntry.COLUMN_PRIORITY + " < ?";
+        String[] selectionArgs = new String[] {"4"};
+        // Select Monday notes
+        // String selection = NotesContract.NotesEntry.COLUMN_DAY_OF_WEEK + " == ?";
+        // String[] selectionArgs = new String[] {"1"};
+        Cursor cursor = database.query(NotesContract.NotesEntry.TABLE_NAME, null, selection, selectionArgs, null, null, NotesContract.NotesEntry.COLUMN_DAY_OF_WEEK);
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex(NotesContract.NotesEntry._ID));
             String title = cursor.getString(cursor.getColumnIndex(NotesContract.NotesEntry.COLUMN_TITLE));
             String description = cursor.getString(cursor.getColumnIndex(NotesContract.NotesEntry.COLUMN_DESCRIPTION));
-            String dayOfWeek = cursor.getString(cursor.getColumnIndex(NotesContract.NotesEntry.COLUMN_DAY_OF_WEEK));
+            int dayOfWeek = cursor.getInt(cursor.getColumnIndex(NotesContract.NotesEntry.COLUMN_DAY_OF_WEEK));
             int priority = cursor.getInt(cursor.getColumnIndex(NotesContract.NotesEntry.COLUMN_PRIORITY));
             Note note = new Note(id, title, description, dayOfWeek, priority);
             notes.add(note);
