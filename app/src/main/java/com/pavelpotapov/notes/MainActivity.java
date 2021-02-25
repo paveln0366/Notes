@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             actionBar.hide();
         }
         recyclerViewNotes = findViewById(R.id.recyclerViewNotes);
-        adapter = new NotesAdapter(notes);
+        adapter = new NotesAdapter(notes, this);
         recyclerViewNotes.setLayoutManager(new LinearLayoutManager(this));
         getData();
         recyclerViewNotes.setAdapter(adapter);

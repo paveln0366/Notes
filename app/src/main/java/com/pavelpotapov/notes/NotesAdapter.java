@@ -1,5 +1,6 @@
 package com.pavelpotapov.notes;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     private List<Note> notes;
     private OnNoteClickListener onNoteClickListener;
+    private Context context;
 
-    public NotesAdapter(ArrayList<Note> notes) {
+    public NotesAdapter(ArrayList<Note> notes, Context context) {
         this.notes = notes;
+        this.context = context;
     }
 
     interface OnNoteClickListener {
@@ -96,15 +99,15 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         }
     }
 
-    public static String getDayAsString(int position) {
+    private String getDayAsString(int position) {
         switch (position) {
-            case 1: return "Monday";
-            case 2: return "Tuesday";
-            case 3: return "Wednesday";
-            case 4: return "Thursday";
-            case 5: return "Friday";
-            case 6: return "Saturday";
-            default: return "Sunday";
+            case 1: return context.getResources().getString(R.string.monday);
+            case 2: return context.getResources().getString(R.string.tuesday);
+            case 3: return context.getResources().getString(R.string.wednesday);
+            case 4: return context.getResources().getString(R.string.thursday);
+            case 5: return context.getResources().getString(R.string.friday);
+            case 6: return context.getResources().getString(R.string.saturday);
+            default: return context.getResources().getString(R.string.sunday);
         }
     }
 

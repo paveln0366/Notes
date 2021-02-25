@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             tools:text="Title"
+            tools:background="@android:color/darker_gray"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
