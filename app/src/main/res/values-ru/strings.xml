@@ -16,4 +16,5 @@
     <string name="friday">Пятница</string>
     <string name="saturday">Суббота</string>
     <string name="sunday">Воскресенье</string>
+    <string name="priority">Приоритет</string>
 </resources>

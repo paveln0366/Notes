@@ -29,3 +29,4 @@
         android:contentDescription="@string/add_note" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--        app:tint="@android:color/white"-->

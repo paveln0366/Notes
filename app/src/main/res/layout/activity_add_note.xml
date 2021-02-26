@@ -41,6 +41,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/priority"
+        android:textSize="18sp"
+        android:layout_margin="@dimen/margin_standard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerDaysOfWeek" />
+
     <RadioGroup
         android:id="@+id/radioGroupPriority"
         android:layout_width="0dp"
@@ -49,7 +59,7 @@
         android:layout_margin="@dimen/margin_standard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerDaysOfWeek">
+        app:layout_constraintTop_toBottomOf="@+id/header">
 
         <RadioButton
             android:id="@+id/radioButton1"

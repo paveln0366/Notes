@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
+//        if (actionBar != null) {
+//            actionBar.hide();
+//        }
         recyclerViewNotes = findViewById(R.id.recyclerViewNotes);
         adapter = new NotesAdapter(notes, this);
         recyclerViewNotes.setLayoutManager(new LinearLayoutManager(this));
@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnNoteClickListener(new NotesAdapter.OnNoteClickListener() {
             @Override
             public void onNoteClick(int position) {
-                Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "" + position, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onLongClick(int position) {
-                remove(position);
+//                remove(position);
             }
         });
 
