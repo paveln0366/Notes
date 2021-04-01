@@ -18,10 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewNotes;
-    private final ArrayList<Note> notes = new ArrayList<>();
-    private NotesAdapter adapter;
+    @Inject NotesAdapter adapter;
+    @Inject ArrayList<Note> notes;
+//    private final ArrayList<Note> notes = new ArrayList<>();
+//    private NotesAdapter adapter;
     private MainViewModel viewModel;
 
     @Override
